@@ -22,7 +22,7 @@ BEGIN
 
 	-- event id and inserted by are required
 	IF @eventid IS NULL OR @inserted_by IS NULL
-		THROW 50000, 'Event ID and User ID is required.', 1;
+		THROW 50000, '@eventid and @inserted_by are required.', 1;
 
 	DECLARE @oldTransactionId INT;
 	DECLARE @oldStatus INT;
