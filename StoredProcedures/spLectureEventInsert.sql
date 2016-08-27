@@ -35,10 +35,15 @@ BEGIN
 	DECLARE @now DATETIME;
 	SET @now = GETUTCDATE();
 
+	DECLARE @eventid UNIQUEIDENTIFIER;
+	SET @eventid = NEWID();
+
     -- Add the new transaction to the lecture schedule inventory table
 	INSERT INTO [dbo].[inv.LectureSchedule]
 		(eventid, start, [end], location, inserted_by, inserted_date, presenter, [description], previous_status, [status])
 	VALUES
-		(NEWID(), @start, @end, @location, @inserted_by, @now, @presenter, @description, 6, 1)
+		(@eventid, @start, @end, @location, @inserted_by, @now, @presenter, @description, 6, 1)
+
+	EXEC spLectureEventRead @eventid = @eventid, @includeHistory = 0;
 END
 GO

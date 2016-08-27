@@ -40,7 +40,7 @@ BEGIN
 		BEGIN
 			SELECT @tempTransId = id, @tempEventId = eventid
 			FROM [dbo].[inv.LectureSchedule]
-			WHERE id = @transactionId;
+			WHERE id = @transactionId AND [status] != 7;
 
 			IF @tempTransId IS NULL
 				THROW 50000, 'Unable to locate specified transaction', 1;
@@ -51,7 +51,7 @@ BEGIN
 		BEGIN
 			SELECT @transactionId = id
 			FROM [dbo].[inv.LectureSchedule]
-			WHERE eventid = @eventid
+			WHERE eventid = @eventid AND [status] != 7
 			ORDER BY id DESC
 			OFFSET 1 ROWS
 			FETCH NEXT 1 ROWS ONLY;
@@ -65,9 +65,9 @@ BEGIN
 	WHERE eventid = @eventid
 	ORDER BY id DESC;
 
-	-- Update the old transaction record to be marked "removed"
+	-- Update the old transaction record to be marked as "undone"
 	UPDATE [dbo].[inv.LectureSchedule]
-	SET [status] = 5
+	SET [status] = 7
 	WHERE id = @currentId;
 
 	-- create a new transaction from the old transaction setting the status to removed

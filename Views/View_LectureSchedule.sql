@@ -44,4 +44,4 @@ RIGHT JOIN (
 	ON [event].eventid = created.eventid
 
 -- exclude removed, replaced, and void transactions
-WHERE [event].[status] NOT IN (4,5,6);
+WHERE [event].[status] NOT IN (4,5,6,7);

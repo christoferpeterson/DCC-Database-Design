@@ -32,7 +32,7 @@ BEGIN
 		@oldTransactionId = id,
 		@oldStatus = [status]
 	FROM [dbo].[inv.LectureSchedule]
-	WHERE eventid = @eventid AND [status] NOT IN (4,5)
+	WHERE eventid = @eventid AND [status] NOT IN (4,5,7)
 	ORDER BY inserted_date DESC;
 
 	IF @oldTransactionId IS NULL

@@ -25,12 +25,13 @@ GO
 INSERT INTO [dbo].[ref.TransactionStatus]
 	([status], [description], [inserted_by], [inserted_date])
 VALUES
-	('new', 'New', 1001, GETUTCDATE()),
-	('flagged', 'Flagged', 1001, GETUTCDATE()),
-	('rejected', 'Rejected', 1001, GETUTCDATE()),
-	('removed', 'Removed', 1001, GETUTCDATE()),
-	('replaced', 'Replaced', 1001, GETUTCDATE()),
-	('void', 'Did not exist', 1001, GETUTCDATE())
+	('new', 'New', 1017, GETUTCDATE()),
+	('flagged', 'Flagged', 1017, GETUTCDATE()),
+	('rejected', 'Rejected', 1017, GETUTCDATE()),
+	('removed', 'Removed', 1017, GETUTCDATE()),
+	('replaced', 'Replaced', 1017, GETUTCDATE()),
+	('void', 'Did not exist', 1017, GETUTCDATE()),
+	('undone', 'Undone', 1017, GETUTCDATE())
 
 SELECT * FROM [dbo].[ref.TransactionStatus] ORDER BY id ASC;
 
